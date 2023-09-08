@@ -1,0 +1,40 @@
+﻿@page
+@model ImageBlob.Pages.UploadPageModel
+@{
+    ViewData["Title"] = "Upload Image";
+}
+
+<h1>@ViewData["Title"]</h1>
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="image">Choose a File:</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="file" id="image" name="ImageFile" class="form-control-file" accept="image/*" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (Model.ImageData != null)
+{
+    <h2>Uploaded Image:</h2>
+    <img src="data:image/png;base64,@Convert.ToBase64String(Model.ImageData)" alt="Uploaded Image" class="id-card-image" />
+}
+
+<style>
+    .id-card-image {
+        max-width: 300px; /* Set the maximum width */
+        max-height: 200px; /* Set the maximum height */
+        border: 1px solid #ccc; /* Add a border for styling */
+    }
+</style>

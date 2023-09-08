@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\ImageBlob.csproj": {}
+    "c:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\ImageBlob.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\ImageBlob.csproj": {
+    "c:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\ImageBlob.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\ImageBlob.csproj",
+        "projectUniqueName": "c:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\ImageBlob.csproj",
         "projectName": "ImageBlob",
-        "projectPath": "C:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\ImageBlob.csproj",
+        "projectPath": "c:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\ImageBlob.csproj",
         "packagesPath": "C:\\Users\\ennie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\obj\\",
+        "outputPath": "c:\\Users\\ennie\\Desktop\\Integrify Assignments\\Cloud\\ImageBlob\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ennie\\AppData\\Roaming\\NuGet\\NuGet.Config",

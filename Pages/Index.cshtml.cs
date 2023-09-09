@@ -26,12 +26,12 @@ namespace ImageBlob.Pages
         [BindProperty]
         public IFormFile ImageFile { get; set; }
         public List<BlobItem> BlobItems { get; set; }
-        public List<byte[]> ImageDataList { get; set; } // Add this property
+        public List<byte[]> ImageDataList { get; set; } 
 
         public async Task<IActionResult> OnGetAsync()
         {
             BlobItems = new List<BlobItem>();
-            ImageDataList = new List<byte[]>(); // Initialize the ImageDataList
+            ImageDataList = new List<byte[]>();
 
             // List all blobs in the container
             var containerClient = _blobServiceClient.GetBlobContainerClient("imagecontainer");
@@ -53,11 +53,11 @@ namespace ImageBlob.Pages
 
                     // Reset the stream position to the start of the data
                     stream.Position = 0;
+                    var fileName = Path.GetFileName(ImageFile.FileName);
 
                     // Get a reference to a blob
                     var containerClient = _blobServiceClient.GetBlobContainerClient("imagecontainer");
-                    var fileName = "quickstart" + Guid.NewGuid().ToString() + ".png";
-                    var blobClient = containerClient.GetBlobClient(fileName);
+                    var blobClient = containerClient.GetBlobClient(fileName); 
 
                     // Upload the image to Blob Storage
                     await blobClient.UploadAsync(stream, true);

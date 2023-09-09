@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Azure.Storage.Blobs;
-using System;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace ImageBlob.Controllers
 {
@@ -16,23 +13,23 @@ namespace ImageBlob.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBlobImage(string blobName)
+        public IActionResult GetBlobImage(string blobName)
         {
-            var containerClient = _blobServiceClient.GetBlobContainerClient("quickstartblobs");
+            var containerClient = _blobServiceClient.GetBlobContainerClient("imagecontainer");
             var blobClient = containerClient.GetBlobClient(blobName);
 
-            if (await blobClient.ExistsAsync())
+            if (blobClient.Exists())
             {
-                var response = await blobClient.OpenReadAsync();
-
-                // Determine the content type based on the file extension
+                var response = blobClient.OpenRead();
                 var contentType = GetContentType(blobName);
+                // var contentType = "image/jpeg";
 
-                // Return the file with the appropriate content type
                 return File(response, contentType);
             }
-
-            return NotFound();
+            else
+            {
+                return NotFound();
+            }
         }
 
         private string GetContentType(string fileName)

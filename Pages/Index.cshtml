@@ -37,8 +37,10 @@
             <div class="col-md-4">
                 <div class="card">
                     <img src="@Url.Action("GetBlobImage", "Image", new { blobName = blobItem.Name })" alt="Uploaded Image" class="card-img-top" />
+
                     <div class="card-body">
-                        <h5 class="card-title">Image Title</h5>
+                        @* <h5 class="card-title">Image Title</h5> *@
+                        <h5 class="card-title">@blobItem.Name</h5>
                         <p class="card-text">Some description about the image.</p>
                         <a href="#" class="btn btn-primary">View Details</a>
                     </div>

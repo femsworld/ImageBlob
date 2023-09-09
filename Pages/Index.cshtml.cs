@@ -1,51 +1,8 @@
-﻿// using Microsoft.AspNetCore.Mvc;
-// using Microsoft.AspNetCore.Mvc.RazorPages;
-
-// namespace ImageBlob.Pages
-// {
-//     public class IndexModel : PageModel
-//     {
-//         private readonly IWebHostEnvironment _environment;
-
-//         public IndexModel(IWebHostEnvironment environment)
-//         {
-//             _environment = environment;
-//         }
-
-//         [BindProperty]
-//         public IFormFile ImageFile { get; set; }
-//         public byte[] ImageData { get; set; }
-
-//         public async Task<IActionResult> OnPostAsync()
-//         {
-//             if (ImageFile != null && ImageFile.Length > 0)
-//             {
-//                 using (var stream = new MemoryStream())
-//                 {
-//                     await ImageFile.CopyToAsync(stream);
-//                     ImageData = stream.ToArray();
-//                 }
-//             }
-
-//             return Page();
-//         }
-//     }
-// }
-
-
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-
 namespace ImageBlob.Pages
 {
     public class IndexModel : PageModel
@@ -86,27 +43,6 @@ namespace ImageBlob.Pages
             return Page();
         }
 
-        // public async Task<IActionResult> OnPostAsync()
-        // {
-        //     if (ImageFile != null && ImageFile.Length > 0)
-        //     {
-        //         using (var stream = new MemoryStream())
-        //         {
-        //             await ImageFile.CopyToAsync(stream);
-
-        //             // Get a reference to a blob
-        //             var containerClient = _blobServiceClient.GetBlobContainerClient("imagecontainer");
-        //             var fileName = "quickstart" + Guid.NewGuid().ToString() + ".png";
-        //             var blobClient = containerClient.GetBlobClient(fileName);
-
-        //             // Upload the image to Blob Storage
-        //             await blobClient.UploadAsync(stream, true);
-        //         }
-        //     }
-
-        //     return RedirectToPage();
-        // }
-
         public async Task<IActionResult> OnPostAsync()
         {
             if (ImageFile != null && ImageFile.Length > 0)
@@ -119,7 +55,7 @@ namespace ImageBlob.Pages
                     stream.Position = 0;
 
                     // Get a reference to a blob
-                    var containerClient = _blobServiceClient.GetBlobContainerClient("testcontainer");
+                    var containerClient = _blobServiceClient.GetBlobContainerClient("imagecontainer");
                     var fileName = "quickstart" + Guid.NewGuid().ToString() + ".png";
                     var blobClient = containerClient.GetBlobClient(fileName);
 

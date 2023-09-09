@@ -1,8 +1,5 @@
 using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
 using ImageBlob.Pages;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 
 
 var builder = WebApplication.CreateBuilder(args);

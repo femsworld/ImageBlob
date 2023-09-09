@@ -1,40 +1,60 @@
 ﻿@page
-@model ImageBlob.Pages.UploadPageModel
+@model ImageBlob.Pages.IndexModel
 @{
-    ViewData["Title"] = "Upload Image";
+    ViewData["Title"] = "Image Gallery";
 }
 
 <h1>@ViewData["Title"]</h1>
-<form method="post" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="image">Choose a File:</label>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <input type="file" id="image" name="ImageFile" class="form-control-file" accept="image/*" />
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Upload</button>
-            </div>
-        </div>
-    </div>
-</form>
 
-@if (Model.ImageData != null)
+@if (Model.BlobItems != null && Model.BlobItems.Count > 0)
 {
-    <h2>Uploaded Image:</h2>
-    <img src="data:image/png;base64,@Convert.ToBase64String(Model.ImageData)" alt="Uploaded Image" class="id-card-image" />
+    <div class="row">
+        @foreach (var blobItem in Model.BlobItems)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="@Url.Action("GetBlobImage", "Image", new { blobName = blobItem.Name })" alt="Uploaded Image" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">Image Title</h5>
+                        <p class="card-text">Some description about the image.</p>
+                        <a href="#" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
 
+<div>
+    <h2>Upload Image</h2>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="image">Choose a File:</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="file" id="image" name="ImageFile" class="form-control-file" accept="image/*" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <style>
-    .id-card-image {
-        max-width: 300px; /* Set the maximum width */
-        max-height: 200px; /* Set the maximum height */
-        border: 1px solid #ccc; /* Add a border for styling */
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .card-img-top {
+        max-height: 150px;
+        object-fit: cover;
     }
 </style>

@@ -22,8 +22,6 @@ namespace ImageBlob.Controllers
             {
                 var response = blobClient.OpenRead();
                 var contentType = GetContentType(blobName);
-                // var contentType = "image/jpeg";
-
                 return File(response, contentType);
             }
             else

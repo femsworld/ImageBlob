@@ -10,6 +10,7 @@ namespace ImageBlob.Pages
         private readonly IWebHostEnvironment _environment;
         private readonly IConfiguration _configuration;
         private readonly BlobServiceClient _blobServiceClient;
+         private string _connectionString;
 
         public IndexModel(
             IWebHostEnvironment environment,
@@ -26,18 +27,20 @@ namespace ImageBlob.Pages
         [BindProperty]
         public IFormFile ImageFile { get; set; }
         public List<BlobItem> BlobItems { get; set; }
-        public List<byte[]> ImageDataList { get; set; } 
+        // public List<byte[]> ImageDataList { get; set; }
+        public List<string> ImageDataList { get; set; }
+        public List<string> BlobImageUrls { get; set; } = new List<string>();
 
         public async Task<IActionResult> OnGetAsync()
         {
             BlobItems = new List<BlobItem>();
-            ImageDataList = new List<byte[]>();
 
             // List all blobs in the container
             var containerClient = _blobServiceClient.GetBlobContainerClient("imagecontainer");
             await foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
             {
                 BlobItems.Add(blobItem);
+                BlobImageUrls.Add(containerClient.GetBlobClient(blobItem.Name).Uri.ToString());
             }
 
             return Page();
